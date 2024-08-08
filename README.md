@@ -36,7 +36,7 @@ User.create_table()
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/Sepehr0267/DbUnify/blob/main/LICENSE) file for details.
 
-<a href="https://pypi.org/project/DbUnify/"><img src="https://img.shields.io/badge/DbUnify-2.1.0-blue"></a> 
+<a href="https://pypi.org/project/DbUnify/"><img src="https://img.shields.io/badge/DbUnify-2.1.2-blue"></a> 
 
 ## Developer
 - **Telegram**: [t.me/Sepehr0Day](https://t.me/Sepehr0Day)
