@@ -1,7 +1,0 @@
-.wy-menu-vertical ul {
-    display: none;
-}
-
-.wy-menu-vertical li:hover > ul {
-    display: block;
-}
