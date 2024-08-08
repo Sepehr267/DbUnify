@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='DbUnify',
-    version='2.1.0',
+    version='2.1.2',
     author='Sepehr0Day',
     description='DbUnify (Database Management) is a versatile Python library that simplifies database connectivity and management using SQLite.',
     long_description=long_description,
