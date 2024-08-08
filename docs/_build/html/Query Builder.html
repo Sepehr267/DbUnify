@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Query Builder &mdash; DbUnify 2.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=20623aea"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Raw" href="aio/Raw.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="SQLite3.html">SQLite3</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sync.html">sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aio.html">aio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Query Builder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder"><code class="docutils literal notranslate"><span class="pre">QueryBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.alter_table"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.alter_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.create_table"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.create_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_from"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.delete_from()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_where"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.delete_where()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.drop_table"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.drop_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.exists"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.from_table"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.from_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_delete_query"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.get_delete_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_insert_query"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.get_insert_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_select_query"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.get_select_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_update_query"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.get_update_query()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.group_by"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.group_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.having"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.having()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.insert_into"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.insert_into()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.join"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.join()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.limit"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.offset"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.offset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.order_by"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.order_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.select"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.select()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.set"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.subquery"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.subquery()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.truncate_table"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.truncate_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.union"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.union()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.update"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.values"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.where"><code class="docutils literal notranslate"><span class="pre">QueryBuilder.where()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="SQLite3.html">SQLite3</a></li>
+      <li class="breadcrumb-item active">Query Builder</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Query Builder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="query-builder">
+<h1>Query Builder<a class="headerlink" href="#query-builder" title="Link to this heading"></a></h1>
+<p>This module provides functionalities for exporting data in synchronous contexts.</p>
+<dl class="py class" id="module-DbUnify.SQLite3.QueryBuilder">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.QueryBuilder.</span></span><span class="sig-name descname"><span class="pre">QueryBuilder</span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.alter_table">
+<span class="sig-name descname"><span class="pre">alter_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.alter_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.alter_table" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL ALTER TABLE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to be altered.</p></li>
+<li><p><strong>commands</strong> – List of commands to modify the table structure (e.g., adding or dropping columns).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL ALTER TABLE clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.create_table">
+<span class="sig-name descname"><span class="pre">create_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.create_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.create_table" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL CREATE TABLE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to be created.</p></li>
+<li><p><strong>columns</strong> – Column definitions, where keys are column names and values are data types.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL CREATE TABLE clause as a string.</p>
+</dd>
+</dl>
+<p>Example:
+&gt;&gt;&gt; qb = QueryBuilder()
+&gt;&gt;&gt; qb.create_table(
+…     table=’products’,
+…     id=’INTEGER PRIMARY KEY’,
+…     name=’TEXT NOT NULL’,
+…     price=’REAL’,
+…     stock=’INTEGER DEFAULT 0’
+… )
+‘CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL, stock INTEGER DEFAULT 0)’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_from">
+<span class="sig-name descname"><span class="pre">delete_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.delete_from"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_from" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL DELETE FROM clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to delete from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL DELETE FROM clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_where">
+<span class="sig-name descname"><span class="pre">delete_where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.delete_where"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.delete_where" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL WHERE clause for deletion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conditions</strong> – Conditions to be used in the WHERE clause.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL WHERE clause for deletion as a string.</p>
+</dd>
+</dl>
+<p>Example:
+&gt;&gt;&gt; qb = QueryBuilder()
+&gt;&gt;&gt; qb.delete_where(‘age &lt; 18’)
+‘WHERE age &lt; 18’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.drop_table">
+<span class="sig-name descname"><span class="pre">drop_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.drop_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.drop_table" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL DROP TABLE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to be dropped.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL DROP TABLE clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subquery</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.exists" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL EXISTS clause to check for the existence of rows returned by a subquery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subquery</strong> – SQL query to be checked for existence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL EXISTS clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.from_table">
+<span class="sig-name descname"><span class="pre">from_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.from_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.from_table" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL FROM clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to select from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL FROM clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_delete_query">
+<span class="sig-name descname"><span class="pre">get_delete_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.get_delete_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_delete_query" title="Link to this definition"></a></dt>
+<dd><p>Constructs a complete SQL DELETE query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to delete from.</p></li>
+<li><p><strong>conditions</strong> – List of WHERE conditions to be applied.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Complete SQL DELETE query as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_insert_query">
+<span class="sig-name descname"><span class="pre">get_insert_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.get_insert_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_insert_query" title="Link to this definition"></a></dt>
+<dd><p>Constructs a complete SQL INSERT query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to insert into.</p></li>
+<li><p><strong>values</strong> – Column-value pairs to be inserted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Complete SQL INSERT query as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_select_query">
+<span class="sig-name descname"><span class="pre">get_select_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">having</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.get_select_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_select_query" title="Link to this definition"></a></dt>
+<dd><p>Constructs a complete SQL SELECT query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to select from.</p></li>
+<li><p><strong>columns</strong> – List of columns to select. If None, all columns are selected.</p></li>
+<li><p><strong>joins</strong> – List of JOIN clauses to be added to the query.</p></li>
+<li><p><strong>conditions</strong> – List of WHERE conditions to be applied.</p></li>
+<li><p><strong>group_by</strong> – List of columns to group by.</p></li>
+<li><p><strong>having</strong> – List of HAVING conditions.</p></li>
+<li><p><strong>order_by</strong> – List of columns to order by, with optional sorting direction.</p></li>
+<li><p><strong>limit</strong> – Number of rows to return.</p></li>
+<li><p><strong>offset</strong> – Number of rows to skip before starting to return rows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Complete SQL SELECT query as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_update_query">
+<span class="sig-name descname"><span class="pre">get_update_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.get_update_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.get_update_query" title="Link to this definition"></a></dt>
+<dd><p>Constructs a complete SQL UPDATE query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to update.</p></li>
+<li><p><strong>values</strong> – Column-value pairs to be updated.</p></li>
+<li><p><strong>conditions</strong> – List of WHERE conditions to be applied.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Complete SQL UPDATE query as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.group_by">
+<span class="sig-name descname"><span class="pre">group_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.group_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.group_by" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL GROUP BY clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns</strong> – Columns to group by.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL GROUP BY clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.having">
+<span class="sig-name descname"><span class="pre">having</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.having"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.having" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL HAVING clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conditions</strong> – Conditions to be used in the HAVING clause.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL HAVING clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.insert_into">
+<span class="sig-name descname"><span class="pre">insert_into</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.insert_into"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.insert_into" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL INSERT INTO clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to insert into.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL INSERT INTO clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.join">
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'INNER'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.join"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.join" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL JOIN clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Name of the table to join.</p></li>
+<li><p><strong>on_condition</strong> – ON condition for the join.</p></li>
+<li><p><strong>join_type</strong> – Type of join (e.g., ‘INNER’, ‘LEFT’, ‘RIGHT’). Defaults to ‘INNER’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL JOIN clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.limit">
+<span class="sig-name descname"><span class="pre">limit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.limit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.limit" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL LIMIT clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>limit</strong> – Maximum number of rows to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL LIMIT clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.offset" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL OFFSET clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>offset</strong> – Number of rows to skip before starting to return rows.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL OFFSET clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.order_by">
+<span class="sig-name descname"><span class="pre">order_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.order_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.order_by" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL ORDER BY clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns</strong> – Columns to order by, with optional sorting direction (e.g., ‘ASC’, ‘DESC’).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL ORDER BY clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.select" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL SELECT clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns</strong> – Column names to be selected. If empty, ‘*’ is used to select all columns.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL SELECT clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.set" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL SET clause for updating rows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> – Column-value pairs to be updated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL SET clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.subquery">
+<span class="sig-name descname"><span class="pre">subquery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.subquery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.subquery" title="Link to this definition"></a></dt>
+<dd><p>Wraps a query in parentheses to be used as a subquery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> – SQL query to be wrapped as a subquery.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL subquery as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.truncate_table">
+<span class="sig-name descname"><span class="pre">truncate_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.truncate_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.truncate_table" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL TRUNCATE TABLE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to be truncated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL TRUNCATE TABLE clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.union"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.union" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL UNION clause to combine the results of multiple SELECT queries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>queries</strong> – SQL SELECT queries to be combined with UNION.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL UNION clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.update" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL UPDATE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – Name of the table to update.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL UPDATE clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.values" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL VALUES clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> – Column-value pairs to be inserted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL VALUES clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.QueryBuilder.QueryBuilder.where">
+<span class="sig-name descname"><span class="pre">where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/QueryBuilder.html#QueryBuilder.where"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.QueryBuilder.QueryBuilder.where" title="Link to this definition"></a></dt>
+<dd><p>Constructs a SQL WHERE clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conditions</strong> – Conditions to be used in the WHERE clause.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SQL WHERE clause as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>The <cite>QueryBuilder</cite> class provides functionalities to construct SQL queries. Below are examples of how to use each method in the <cite>QueryBuilder</cite> class.</p>
+<p><strong>Class Initialization</strong></p>
+<p>First, import the necessary module and initialize the <cite>QueryBuilder</cite> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.QueryBuilder</span> <span class="kn">import</span> <span class="n">QueryBuilder</span>
+
+<span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Method Examples</strong></p>
+<p><strong>1. `alter_table`</strong></p>
+<p>Constructs a SQL <cite>ALTER TABLE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">alter_table</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">,</span>
+    <span class="n">commands</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;ADD COLUMN salary REAL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DROP COLUMN old_position&#39;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">TABLE</span> <span class="n">employees</span> <span class="n">ADD</span> <span class="n">COLUMN</span> <span class="n">salary</span> <span class="n">REAL</span><span class="p">,</span> <span class="n">DROP</span> <span class="n">COLUMN</span> <span class="n">old_position</span>
+</pre></div>
+</div>
+<p><strong>2. `create_table`</strong></p>
+<p>Constructs a SQL <cite>CREATE TABLE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;products&#39;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;INTEGER PRIMARY KEY&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;TEXT NOT NULL&#39;</span><span class="p">,</span>
+    <span class="n">price</span><span class="o">=</span><span class="s1">&#39;REAL&#39;</span><span class="p">,</span>
+    <span class="n">stock</span><span class="o">=</span><span class="s1">&#39;INTEGER DEFAULT 0&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">TABLE</span> <span class="n">products</span> <span class="p">(</span><span class="nb">id</span> <span class="n">INTEGER</span> <span class="n">PRIMARY</span> <span class="n">KEY</span><span class="p">,</span> <span class="n">name</span> <span class="n">TEXT</span> <span class="n">NOT</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">price</span> <span class="n">REAL</span><span class="p">,</span> <span class="n">stock</span> <span class="n">INTEGER</span> <span class="n">DEFAULT</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. `delete_from`</strong></p>
+<p>Constructs a SQL <cite>DELETE FROM</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">delete_from</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">employees</span>
+</pre></div>
+</div>
+<p><strong>4. `delete_where`</strong></p>
+<p>Constructs a SQL <cite>WHERE</cite> clause for deletion.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">delete_where</span><span class="p">(</span><span class="s1">&#39;age &lt; 18&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WHERE</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span>
+</pre></div>
+</div>
+<p><strong>5. `drop_table`</strong></p>
+<p>Constructs a SQL <cite>DROP TABLE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;old_data&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DROP</span> <span class="n">TABLE</span> <span class="n">old_data</span>
+</pre></div>
+</div>
+<p><strong>6. `exists`</strong></p>
+<p>Constructs a SQL <cite>EXISTS</cite> clause to check for the existence of rows returned by a subquery.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">subquery</span><span class="o">=</span><span class="s1">&#39;SELECT 1 FROM employees WHERE id = 1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXISTS</span> <span class="p">(</span><span class="n">SELECT</span> <span class="mi">1</span> <span class="n">FROM</span> <span class="n">employees</span> <span class="n">WHERE</span> <span class="nb">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>7. `from_table`</strong></p>
+<p>Constructs a SQL <cite>FROM</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">employees</span>
+</pre></div>
+</div>
+<p><strong>8. `get_delete_query`</strong></p>
+<p>Constructs a complete SQL <cite>DELETE</cite> query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">get_delete_query</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">,</span>
+    <span class="n">conditions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;age &lt; 18&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">employees</span> <span class="n">WHERE</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span>
+</pre></div>
+</div>
+<p><strong>9. `get_insert_query`</strong></p>
+<p>Constructs a complete SQL <cite>INSERT</cite> query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">get_insert_query</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+    <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">department</span><span class="o">=</span><span class="s1">&#39;HR&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">employees</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">department</span><span class="p">)</span> <span class="n">VALUES</span> <span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;HR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>10. `get_select_query`</strong></p>
+<p>Constructs a complete SQL <cite>SELECT</cite> query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">get_select_query</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span>
+    <span class="n">conditions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;age &gt; 30&#39;</span><span class="p">],</span>
+    <span class="n">order_by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name DESC&#39;</span><span class="p">],</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span> <span class="n">FROM</span> <span class="n">employees</span> <span class="n">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">name</span> <span class="n">DESC</span> <span class="n">LIMIT</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p><strong>11. `get_update_query`</strong></p>
+<p>Constructs a complete SQL <cite>UPDATE</cite> query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">get_update_query</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="s1">&#39;Sales&#39;</span><span class="p">},</span>
+    <span class="n">conditions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id = 1&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">employees</span> <span class="n">SET</span> <span class="n">department</span> <span class="o">=</span> <span class="s1">&#39;Sales&#39;</span> <span class="n">WHERE</span> <span class="nb">id</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>12. `group_by`</strong></p>
+<p>Constructs a SQL <cite>GROUP BY</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GROUP</span> <span class="n">BY</span> <span class="n">department</span>
+</pre></div>
+</div>
+<p><strong>13. `having`</strong></p>
+<p>Constructs a SQL <cite>HAVING</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">having</span><span class="p">(</span><span class="s1">&#39;COUNT(*) &gt; 5&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HAVING</span> <span class="n">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p><strong>14. `insert_into`</strong></p>
+<p>Constructs a SQL <cite>INSERT INTO</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">insert_into</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">employees</span>
+</pre></div>
+</div>
+<p><strong>15. `join`</strong></p>
+<p>Constructs a SQL <cite>JOIN</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;departments&#39;</span><span class="p">,</span> <span class="n">on_condition</span><span class="o">=</span><span class="s1">&#39;employees.department_id = departments.id&#39;</span><span class="p">,</span> <span class="n">join_type</span><span class="o">=</span><span class="s1">&#39;LEFT&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LEFT</span> <span class="n">JOIN</span> <span class="n">departments</span> <span class="n">ON</span> <span class="n">employees</span><span class="o">.</span><span class="n">department_id</span> <span class="o">=</span> <span class="n">departments</span><span class="o">.</span><span class="n">id</span>
+</pre></div>
+</div>
+<p><strong>16. `limit`</strong></p>
+<p>Constructs a SQL <cite>LIMIT</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIMIT</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p><strong>17. `offset`</strong></p>
+<p>Constructs a SQL <cite>OFFSET</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OFFSET</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p><strong>18. `order_by`</strong></p>
+<p>Constructs a SQL <cite>ORDER BY</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;age DESC&#39;</span><span class="p">,</span> <span class="s1">&#39;name ASC&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ORDER</span> <span class="n">BY</span> <span class="n">age</span> <span class="n">DESC</span><span class="p">,</span> <span class="n">name</span> <span class="n">ASC</span>
+</pre></div>
+</div>
+<p><strong>19. `select`</strong></p>
+<p>Constructs a SQL <cite>SELECT</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span>
+</pre></div>
+</div>
+<p><strong>20. `set`</strong></p>
+<p>Constructs a SQL <cite>SET</cite> clause for updating rows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SET</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">32</span>
+</pre></div>
+</div>
+<p><strong>21. `subquery`</strong></p>
+<p>Wraps a query in parentheses to be used as a subquery.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">subquery</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM employees WHERE age &gt; 30&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">SELECT</span> <span class="o">*</span> <span class="n">FROM</span> <span class="n">employees</span> <span class="n">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>22. `truncate_table`</strong></p>
+<p>Constructs a SQL <cite>TRUNCATE TABLE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">truncate_table</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;old_records&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TRUNCATE</span> <span class="n">TABLE</span> <span class="n">old_records</span>
+</pre></div>
+</div>
+<p><strong>23. `union`</strong></p>
+<p>Constructs a SQL <cite>UNION</cite> clause to combine the results of multiple SELECT queries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">union</span><span class="p">(</span>
+    <span class="s1">&#39;SELECT name FROM employees WHERE department = &quot;HR&quot;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SELECT name FROM contractors WHERE department = &quot;HR&quot;&#39;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">name</span> <span class="n">FROM</span> <span class="n">employees</span> <span class="n">WHERE</span> <span class="n">department</span> <span class="o">=</span> <span class="s1">&#39;HR&#39;</span> <span class="n">UNION</span> <span class="n">SELECT</span> <span class="n">name</span> <span class="n">FROM</span> <span class="n">contractors</span> <span class="n">WHERE</span> <span class="n">department</span> <span class="o">=</span> <span class="s1">&#39;HR&#39;</span>
+</pre></div>
+</div>
+<p><strong>24. `update`</strong></p>
+<p>Constructs a SQL <cite>UPDATE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="s1">&#39;employees&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UPDATE</span> <span class="n">employees</span>
+</pre></div>
+</div>
+<p><strong>25. `values`</strong></p>
+<p>Constructs a SQL <cite>VALUES</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VALUES</span> <span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">29</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>26. `where`</strong></p>
+<p>Constructs a SQL <cite>WHERE</cite> clause.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qb</span> <span class="o">=</span> <span class="n">QueryBuilder</span><span class="p">()</span>
+<span class="n">sql</span> <span class="o">=</span> <span class="n">qb</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;age &gt; 30&#39;</span><span class="p">,</span> <span class="s1">&#39;department = &quot;Sales&quot;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WHERE</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="n">AND</span> <span class="n">department</span> <span class="o">=</span> <span class="s1">&#39;Sales&#39;</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aio/Raw.html" class="btn btn-neutral float-left" title="Raw" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

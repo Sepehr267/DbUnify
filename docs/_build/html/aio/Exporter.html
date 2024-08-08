@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exporter &mdash; DbUnify 2.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=20623aea"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Raw" href="Raw.html" />
+    <link rel="prev" title="ORM" href="ORM.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../SQLite3.html">SQLite3</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../sync.html">sync</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../aio.html">aio</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Manager.html">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ORM.html">ORM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Exporter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.aio.Exporter.Exporter.Exporter"><code class="docutils literal notranslate"><span class="pre">Exporter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Raw.html">Raw</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Query%20Builder.html">Query Builder</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../SQLite3.html">SQLite3</a></li>
+          <li class="breadcrumb-item"><a href="../aio.html">aio</a></li>
+      <li class="breadcrumb-item active">Exporter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/aio/Exporter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="exporter">
+<h1>Exporter<a class="headerlink" href="#exporter" title="Link to this heading"></a></h1>
+<p>This module provides functionalities for exporting data in asynchronous contexts.</p>
+<dl class="py class" id="module-DbUnify.SQLite3.aio.Exporter.Exporter">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.aio.Exporter.Exporter.Exporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.aio.Exporter.Exporter.</span></span><span class="sig-name descname"><span class="pre">Exporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/aio/Exporter/Exporter.html#Exporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.aio.Exporter.Exporter.Exporter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p># Exporter Class:</p>
+<p>#### The Exporter class provides methods to export data from a database to various formats such as charts (images) and CSV files.</p>
+<dl class="simple">
+<dt>### Attributes:</dt><dd><ul class="simple">
+<li><p>manager (Manager): The Manager instance managing the database connection.</p></li>
+<li><p>raw (Raw): An instance of the Raw class for executing raw SQL queries.</p></li>
+</ul>
+</dd>
+<dt>### Methods:</dt><dd><ul class="simple">
+<li><p>__init__(self, manager): Initializes the Exporter instance with a Manager instance.</p></li>
+<li><dl class="simple">
+<dt>export_chart_database(self, output_directory, chart_type=’bar’, x_label=’X Label’, y_label=’Y Label’):</dt><dd><p>Creates charts for all tables in the database and saves them as images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>export_chart_table(self, table_name, x_column, y_column, x_label=’X Label’, y_label=’Y Label’, title=’Chart Title’, save_path=’chart.png’, chart_type=’bar’):</dt><dd><p>Creates a chart from data in a specific table and saves it as an image.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>export_data_csv(self, table_name, csv_file_path, csv_file_name=’output’):</dt><dd><p>Exports data from a table to a CSV file.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>### Raises:</dt><dd><ul class="simple">
+<li><p>RuntimeError: If there is an error during chart creation or saving, or during CSV data export.</p></li>
+</ul>
+</dd>
+<dt>### Note:</dt><dd><ul class="simple">
+<li><p>This class is designed for asynchronous usage and requires the use of the ‘async’ and ‘await’ keywords for method calls.</p></li>
+<li><p>The ‘Manager’ and ‘Raw’ classes are used internally for database management and executing raw SQL queries respectively.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_chart_database">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">export_chart_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chart_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'X</span> <span class="pre">Label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Y</span> <span class="pre">Label'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/aio/Exporter/Exporter.html#Exporter.export_chart_database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_chart_database" title="Link to this definition"></a></dt>
+<dd><p>Create charts for all tables in the database and save them as images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_directory</strong> (<em>str</em>) – The directory where chart images will be saved.</p></li>
+<li><p><strong>chart_type</strong> (<em>str</em>) – The type of chart to create (‘bar’, ‘line’, ‘scatter’, etc.).</p></li>
+<li><p><strong>x_label</strong> (<em>str</em>) – Label for the x-axis.</p></li>
+<li><p><strong>y_label</strong> (<em>str</em>) – Label for the y-axis.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error creating charts or saving them as images.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_chart_table">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">export_chart_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'X</span> <span class="pre">Label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Y</span> <span class="pre">Label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Chart</span> <span class="pre">Title'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chart.png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chart_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bar'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/aio/Exporter/Exporter.html#Exporter.export_chart_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_chart_table" title="Link to this definition"></a></dt>
+<dd><p>Create a chart from data in the database and save it as an image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> (<em>str</em>) – Name of the database table to retrieve data from.</p></li>
+<li><p><strong>x_column</strong> (<em>int</em>) – Index of the x-axis column in the retrieved data.</p></li>
+<li><p><strong>y_column</strong> (<em>int</em>) – Index of the y-axis column in the retrieved data.</p></li>
+<li><p><strong>x_label</strong> (<em>str</em>) – Label for the x-axis.</p></li>
+<li><p><strong>y_label</strong> (<em>str</em>) – Label for the y-axis.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – Title of the chart.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em>) – Path to save the chart image.</p></li>
+<li><p><strong>chart_type</strong> (<em>str</em>) – The type of chart to create (‘bar’, ‘line’, ‘scatter’, etc.).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error creating the chart or saving it as an image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_data_csv">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">export_data_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'output'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/aio/Exporter/Exporter.html#Exporter.export_data_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.aio.Exporter.Exporter.Exporter.export_data_csv" title="Link to this definition"></a></dt>
+<dd><p>Export data from a table to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> (<em>str</em>) – The name of the table to export data from.</p></li>
+<li><p><strong>csv_file_path</strong> (<em>str</em>) – The path to save the exported CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If there is an error during data export.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p>First, import the necessary modules and initialize the <cite>Exporter</cite> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Exporter</span> <span class="kn">import</span> <span class="n">Exporter</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">exporter</span> <span class="o">=</span> <span class="n">Exporter</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Export Chart Database</strong></p>
+<p>Create charts for all tables in the database and save them as images.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Exporter</span> <span class="kn">import</span> <span class="n">Exporter</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">exporter</span> <span class="o">=</span> <span class="n">Exporter</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">exporter</span><span class="o">.</span><span class="n">export_chart_database</span><span class="p">(</span><span class="n">output_directory</span><span class="o">=</span><span class="s1">&#39;charts&#39;</span><span class="p">,</span> <span class="n">chart_type</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;X Axis&#39;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;Y Axis&#39;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Export Chart Table</strong></p>
+<p>Create a chart from data in a specific table and save it as an image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Exporter</span> <span class="kn">import</span> <span class="n">Exporter</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">exporter</span> <span class="o">=</span> <span class="n">Exporter</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">exporter</span><span class="o">.</span><span class="n">export_chart_table</span><span class="p">(</span>
+        <span class="n">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">,</span>
+        <span class="n">x_column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">y_column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">x_label</span><span class="o">=</span><span class="s1">&#39;User ID&#39;</span><span class="p">,</span>
+        <span class="n">y_label</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;User Age Distribution&#39;</span><span class="p">,</span>
+        <span class="n">save_path</span><span class="o">=</span><span class="s1">&#39;charts/user_age_distribution.png&#39;</span><span class="p">,</span>
+        <span class="n">chart_type</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span>
+    <span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Export Data to CSV</strong></p>
+<p>Export data from a table to a CSV file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.aio.Exporter</span> <span class="kn">import</span> <span class="n">Exporter</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">exporter</span> <span class="o">=</span> <span class="n">Exporter</span><span class="p">(</span><span class="n">manager</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">exporter</span><span class="o">.</span><span class="n">export_data_csv</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="o">=</span><span class="s1">&#39;users_data&#39;</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ORM.html" class="btn btn-neutral float-left" title="ORM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Raw.html" class="btn btn-neutral float-right" title="Raw" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

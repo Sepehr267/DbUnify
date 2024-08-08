@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQLite3.sync.ORM package &mdash; DbUnify 2.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=20623aea"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SQLite3.html">SQLite3</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">DbUnify.SQLite3.sync.ORM package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/DbUnify.SQLite3.sync.ORM.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dbunify-sqlite3-sync-orm-package">
+<h1>DbUnify.SQLite3.sync.ORM package<a class="headerlink" href="#dbunify-sqlite3-sync-orm-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.Field">
+<span id="dbunify-sqlite3-sync-orm-field-module"></span><h2>DbUnify.SQLite3.sync.ORM.Field module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.Field" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Field.Field">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.Field.</span></span><span class="sig-name descname"><span class="pre">Field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="DbUnify.SQLite3.data.html#DbUnify.SQLite3.data.Rules.Rules" title="DbUnify.SQLite3.data.Rules.Rules"><span class="pre">Rules</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Field.html#Field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Field.Field" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all model fields.</p>
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.Model">
+<span id="dbunify-sqlite3-sync-orm-model-module"></span><h2>DbUnify.SQLite3.sync.ORM.Model module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.Model" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.Model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all models, handling field definitions and schema management.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.add_column">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="DbUnify.SQLite3.data.html#DbUnify.SQLite3.data.Rules.Rules" title="DbUnify.SQLite3.data.Rules.Rules"><span class="pre">Rules</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.add_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.add_column" title="Link to this definition"></a></dt>
+<dd><p>Add a column to the table using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>column_name</strong> (<em>str</em>) – The name of the column to add.</p></li>
+<li><p><strong>data_type</strong> (<em>str</em>) – The data type of the column.</p></li>
+<li><p><strong>constraints</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="DbUnify.SQLite3.data.html#DbUnify.SQLite3.data.Rules.Rules" title="DbUnify.SQLite3.data.Rules.Rules"><em>Rules</em></a><em>]</em><em>]</em><em>]</em>) – Optional constraints for the column.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.alter_table_schema">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alter_table_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.alter_table_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.alter_table_schema" title="Link to this definition"></a></dt>
+<dd><p>Apply schema changes to the database based on the model’s fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set or there is an error applying schema changes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.apply_migrations">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply_migrations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.apply_migrations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.apply_migrations" title="Link to this definition"></a></dt>
+<dd><p>Apply migrations to the database schema based on the model’s fields using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set or there is an error applying migrations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.create_table">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.create_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.create_table" title="Link to this definition"></a></dt>
+<dd><p>Create the table in the database using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.create_table_schema">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_table_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.create_table_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.create_table_schema" title="Link to this definition"></a></dt>
+<dd><p>Generate the SQL schema for creating a table based on the model’s fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The SQL schema string for creating the table.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.delete_column">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.delete_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.delete_column" title="Link to this definition"></a></dt>
+<dd><p>Delete a column from the table using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>column_name</strong> (<em>str</em>) – The name of the column to delete.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.delete_row">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.delete_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.delete_row" title="Link to this definition"></a></dt>
+<dd><p>Delete a row from the table based on a condition using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>condition</strong> (<em>str</em>) – The condition to identify which row(s) to delete.</p></li>
+<li><p><strong>*args</strong> – Additional arguments for the query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.drop_table">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drop_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.drop_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.drop_table" title="Link to this definition"></a></dt>
+<dd><p>Drop the table from the database using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.fetch_all">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fetch_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.fetch_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.fetch_all" title="Link to this definition"></a></dt>
+<dd><p>Execute a query and fetch all results using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.get_fields">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="sync/ORM.html#DbUnify.SQLite3.sync.ORM.Field.Field" title="DbUnify.SQLite3.sync.ORM.Field.Field"><span class="pre">Field</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.get_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.get_fields" title="Link to this definition"></a></dt>
+<dd><p>Get the fields of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary of field names and their definitions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.get_orm_manager">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_orm_manager</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.get_orm_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.get_orm_manager" title="Link to this definition"></a></dt>
+<dd><p>Get the ORMManager instance for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ORMManager instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMManager.ORMManager" title="DbUnify.SQLite3.aio.ORM.ORMManager.ORMManager">ORMManager</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.get_table_columns">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_table_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.get_table_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.get_table_columns" title="Link to this definition"></a></dt>
+<dd><p>Get the columns and their data types for the table using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of column names and their data types.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.get_table_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_table_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.get_table_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.get_table_name" title="Link to this definition"></a></dt>
+<dd><p>Get the table name for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the table in lowercase.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.insert_row">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">insert_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.insert_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.insert_row" title="Link to this definition"></a></dt>
+<dd><p>Insert a row into the table using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>, </em><em>float</em><em>]</em><em>]</em>) – The values to insert into the row.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.map_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.map_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.map_model" title="Link to this definition"></a></dt>
+<dd><p>Map the model to a database table and create it if it doesn’t exist using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.orm_manager">
+<span class="sig-name descname"><span class="pre">orm_manager</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.orm_manager" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.select">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.select" title="Link to this definition"></a></dt>
+<dd><p>Search for all rows in the table using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of dictionaries representing all rows in the table.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Dict[str, Union[str, int, float]]]</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.select_one">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.select_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.select_one" title="Link to this definition"></a></dt>
+<dd><p>Search for a single row in the table based on a condition using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>condition</strong> (<em>str</em>) – The condition to identify the row to select.</p></li>
+<li><p><strong>*args</strong> – Additional arguments for the query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The selected row as a dictionary, or None if no row is found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Dict[str, Union[str, int, float]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.set_manager">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_manager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.set_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.set_manager" title="Link to this definition"></a></dt>
+<dd><p>Set the ORMManager instance for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>manager</strong> (<a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMManager.ORMManager" title="DbUnify.SQLite3.aio.ORM.ORMManager.ORMManager"><em>ORMManager</em></a>) – The ORMManager instance to be used by the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Model.Model.update_row">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Model.html#Model.update_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Model.Model.update_row" title="Link to this definition"></a></dt>
+<dd><p>Update a row in the table based on a condition using the ORMManager instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Union</em><em>[</em><em>str</em><em>, </em><em>int</em><em>, </em><em>float</em><em>]</em><em>]</em>) – The values to update in the row.</p></li>
+<li><p><strong>condition</strong> (<em>str</em>) – The condition to identify which row(s) to update.</p></li>
+<li><p><strong>*args</strong> – Additional arguments for the query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If ORMManager instance is not set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.ModelMeta">
+<span id="dbunify-sqlite3-sync-orm-modelmeta-module"></span><h2>DbUnify.SQLite3.sync.ORM.ModelMeta module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.ModelMeta" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ModelMeta.ModelMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.ModelMeta.</span></span><span class="sig-name descname"><span class="pre">ModelMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ModelMeta.html#ModelMeta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ModelMeta.ModelMeta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.ORMException">
+<span id="dbunify-sqlite3-sync-orm-ormexception-module"></span><h2>DbUnify.SQLite3.sync.ORM.ORMException module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.ORMException" title="Link to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMException.ORMMException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.ORMException.</span></span><span class="sig-name descname"><span class="pre">ORMMException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMException.html#ORMMException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMException.ORMMException" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base class for all exceptions related to the Manager and ORM system.</p>
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.ORMManager">
+<span id="dbunify-sqlite3-sync-orm-ormmanager-module"></span><h2>DbUnify.SQLite3.sync.ORM.ORMManager module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.ORMManager" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.ORMManager.</span></span><span class="sig-name descname"><span class="pre">ORMManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_ttl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="sync/Manager.html#DbUnify.SQLite3.sync.Manager.Manager.Manager" title="DbUnify.SQLite3.sync.Manager.Manager.Manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manager</span></code></a></p>
+<p>ORMManager Class</p>
+<p>The ORMManager class provides methods for managing database schema and interactions using ORM (Object-Relational Mapping) principles. It extends the Manager class and includes functionalities for mapping models, applying migrations, and handling database resources.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.cache">
+<span class="sig-name descname"><span class="pre">cache</span></span><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.cache" title="Link to this definition"></a></dt>
+<dd><p>An instance of the Cache class for caching query results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="DbUnify.SQLite3.html#DbUnify.SQLite3.Cache.Cache" title="DbUnify.SQLite3.Cache.Cache">Cache</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.__enter__">
+<span class="sig-name descname"><span class="pre">__enter__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.__enter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.__enter__" title="Link to this definition"></a></dt>
+<dd><p>Enter the runtime context related to this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.__exit__">
+<span class="sig-name descname"><span class="pre">__exit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_tb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.__exit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.__exit__" title="Link to this definition"></a></dt>
+<dd><p>Exit the runtime context related to this object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.get_table_columns">
+<span class="sig-name descname"><span class="pre">get_table_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.get_table_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.get_table_columns" title="Link to this definition"></a></dt>
+<dd><p>Get the columns and their data types for a table.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.apply_migrations">
+<span class="sig-name descname"><span class="pre">apply_migrations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.apply_migrations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.apply_migrations" title="Link to this definition"></a></dt>
+<dd><p>Apply migrations to the database schema based on the provided model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.map_model">
+<span class="sig-name descname"><span class="pre">map_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.map_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.map_model" title="Link to this definition"></a></dt>
+<dd><p>Map a model to a database table and create it if it doesn’t exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.table_exists">
+<span class="sig-name descname"><span class="pre">table_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.table_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager.table_exists" title="Link to this definition"></a></dt>
+<dd><p>Check if a table exists in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager._orm_exit">
+<span class="sig-name descname"><span class="pre">_orm_exit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager._orm_exit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.ORMManager.ORMManager._orm_exit" title="Link to this definition"></a></dt>
+<dd><p>A private method for closing resources and performing final cleanup.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">apply_migrations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.Model.Model" title="DbUnify.SQLite3.aio.ORM.Model.Model"><span class="pre">Model</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.apply_migrations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Apply migrations to the database schema based on the provided model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>Type</em><em>[</em><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.Model.Model" title="DbUnify.SQLite3.aio.ORM.Model.Model"><em>Model</em></a><em>]</em>) – The model class used for applying migrations.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If there is an error applying migrations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">get_table_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.get_table_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Get the columns and their data types for a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_name</strong> (<em>str</em>) – Name of the table.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of column names and their data types.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If there is an error getting the columns.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">map_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.Model.Model" title="DbUnify.SQLite3.aio.ORM.Model.Model"><span class="pre">Model</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.map_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Map a model to a database table and create it if it doesn’t exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>Type</em><em>[</em><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.Model.Model" title="DbUnify.SQLite3.aio.ORM.Model.Model"><em>Model</em></a><em>]</em>) – The model class to be mapped to the database.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If there is an error mapping the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">table_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/ORMManager.html#ORMManager.table_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Check if a table exists in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_name</strong> (<em>str</em>) – Name of the table to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the table exists, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aio/ORM.html#DbUnify.SQLite3.aio.ORM.ORMException.ORMMException" title="DbUnify.SQLite3.aio.ORM.ORMException.ORMMException"><strong>ORMMException</strong></a> – If there is an error checking if the table exists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM.Types">
+<span id="dbunify-sqlite3-sync-orm-types-module"></span><h2>DbUnify.SQLite3.sync.ORM.Types module<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM.Types" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Types.IntegerField">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.Types.</span></span><span class="sig-name descname"><span class="pre">IntegerField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Types.html#IntegerField"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Types.IntegerField" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="sync/ORM.html#DbUnify.SQLite3.sync.ORM.Field.Field" title="DbUnify.SQLite3.sync.ORM.Field.Field"><code class="xref py py-class docutils literal notranslate"><span class="pre">Field</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.ORM.Types.TextField">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.ORM.Types.</span></span><span class="sig-name descname"><span class="pre">TextField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQLite3/sync/ORM/Types.html#TextField"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.ORM.Types.TextField" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="sync/ORM.html#DbUnify.SQLite3.sync.ORM.Field.Field" title="DbUnify.SQLite3.sync.ORM.Field.Field"><code class="xref py py-class docutils literal notranslate"><span class="pre">Field</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQLite3.sync.ORM">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DbUnify.SQLite3.sync.ORM" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
