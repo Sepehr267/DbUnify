@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQL.SQC.SQCTrainer &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">DbUnify</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">DbUnify.SQL.SQC.SQCTrainer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for DbUnify.SQL.SQC.SQCTrainer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<div class="viewcode-block" id="SQCTrainer">
+<a class="viewcode-back" href="../../../../DbUnify.SQL.SQC.html#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer">[docs]</a>
+<span class="k">class</span> <span class="nc">SQCTrainer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is designed to detect SQL injection attempts in SQL queries using machine learning techniques.</span>
+<span class="sd">    It reads data from a JSON file, processes the data, trains a model, evaluates the model&#39;s performance,</span>
+<span class="sd">    and saves the trained model and vectorizer for future use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the SQC with data from a JSON file.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            json_file (str): Path to the JSON file containing the dataset with SQL queries and labels.</span>
+<span class="sd">        </span>
+<span class="sd">        Attributes:</span>
+<span class="sd">            self.df (pd.DataFrame): DataFrame containing the SQL queries and their corresponding labels.</span>
+<span class="sd">            self.vectorizer (TfidfVectorizer): Vectorizer for transforming SQL queries into TF-IDF features.</span>
+<span class="sd">            self.model (RandomForestClassifier): Machine learning model for classifying SQL queries.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">json_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SQCTrainer.preprocess_data">
+<a class="viewcode-back" href="../../../../DbUnify.SQL.SQC.html#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.preprocess_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">preprocess_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preprocesses the data by transforming SQL queries into TF-IDF features and splitting the data into training and testing sets.</span>
+<span class="sd">        </span>
+<span class="sd">        Attributes:</span>
+<span class="sd">            self.X_vectorized (sparse matrix): TF-IDF features of the SQL queries.</span>
+<span class="sd">            self.X_train (sparse matrix): Training features.</span>
+<span class="sd">            self.X_test (sparse matrix): Testing features.</span>
+<span class="sd">            self.y_train (pd.Series): Training labels.</span>
+<span class="sd">            self.y_test (pd.Series): Testing labels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_vectorized</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_vectorized</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQCTrainer.train_model">
+<a class="viewcode-back" href="../../../../DbUnify.SQL.SQC.html#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.train_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trains the RandomForestClassifier model using the preprocessed training data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQCTrainer.evaluate_model">
+<a class="viewcode-back" href="../../../../DbUnify.SQL.SQC.html#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.evaluate_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">evaluate_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluates the trained model on the test data, printing the accuracy and classification report.</span>
+<span class="sd">        </span>
+<span class="sd">        Outputs:</span>
+<span class="sd">            Accuracy (float): The accuracy of the model on the test data.</span>
+<span class="sd">            Classification Report (str): Detailed performance metrics including precision, recall, and F1-score.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classification Report:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQCTrainer.save_model">
+<a class="viewcode-back" href="../../../../DbUnify.SQL.SQC.html#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.save_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">save_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_filename</span><span class="p">,</span> <span class="n">vectorizer_filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Saves the trained model and the vectorizer to files for later use.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            model_filename (str): Path to the file where the trained model will be saved.</span>
+<span class="sd">            vectorizer_filename (str): Path to the file where the vectorizer will be saved.</span>
+<span class="sd">        </span>
+<span class="sd">        Outputs:</span>
+<span class="sd">            Prints a confirmation message indicating where the model and vectorizer have been saved.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">model_filename</span><span class="p">)</span>
+        <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">vectorizer_filename</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model and vectorizer saved to &#39;</span><span class="si">{</span><span class="n">model_filename</span><span class="si">}</span><span class="s2">&#39; and &#39;</span><span class="si">{</span><span class="n">vectorizer_filename</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

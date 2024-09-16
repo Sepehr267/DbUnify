@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raw &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="aio" href="../SQLITE3_aio.html" />
+    <link rel="prev" title="Exporter" href="Exporter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../SQLite3.html">SQLite3</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../SQLITE3_sync.html">sync</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Manager.html">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ORM.html">ORM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Live.html">Live</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Exporter.html">Exporter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Raw</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DbUnify.SQLite3.sync.Raw.Raw"><code class="docutils literal notranslate"><span class="pre">Raw</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SQLITE3_aio.html">aio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Query%20Builder.html">Query Builder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../MySQL.html">MySQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SQL.html">SQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../SQLite3.html">SQLite3</a></li>
+          <li class="breadcrumb-item"><a href="../SQLITE3_sync.html">sync</a></li>
+      <li class="breadcrumb-item active">Raw</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/SQLITE3_sync/Raw.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="raw">
+<h1>Raw<a class="headerlink" href="#raw" title="Link to this heading"></a></h1>
+<p><strong>Raw</strong> provides methods for executing raw SQL queries, creating and restoring database backups, listing tables, and handling base64 encoded data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.Raw.</span></span><span class="sig-name descname"><span class="pre">Raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p># Raw Class</p>
+<p>#### The Raw class provides methods for executing raw SQL queries, creating database backups, restoring backups,
+#### listing tables, inserting and reading base64 encoded data.</p>
+<dl class="simple">
+<dt>### Attributes:</dt><dd><ul class="simple">
+<li><p>manager (Manager): The Manager instance managing the database connection.</p></li>
+</ul>
+</dd>
+<dt>### Methods:</dt><dd><ul class="simple">
+<li><p>__init__(self, manager): Initializes the Raw instance with a Manager instance.</p></li>
+<li><p>backup_database(self, backup_path): Creates a backup of the database.</p></li>
+<li><p>restore_database(self, backup_path): Restores the database from a backup.</p></li>
+<li><p>execute_query(self, query, <a href="#id1"><span class="problematic" id="id2">*</span></a>args): Executes a database query.</p></li>
+<li><p>list_tables(self): Gets a list of all tables in the SQLite database.</p></li>
+<li><p>insert_base64(self, table_name, data_dict): Inserts base64 encoded data into a database table.</p></li>
+<li><p>read_base64(self, table_name, only_base64): Reads and decodes base64 encoded data from a database table.</p></li>
+</ul>
+</dd>
+<dt>### Raises:</dt><dd><ul class="simple">
+<li><p>RuntimeError: If there is an error during database backup, restoration, query execution, listing tables,
+or reading and decoding base64 data.</p></li>
+</ul>
+</dd>
+<dt>### Note:</dt><dd><ul class="simple">
+<li><p>This class is designed for asynchronous usage and requires the use of the ‘async’ and ‘await’ keywords for method calls.</p></li>
+<li><p>The ‘Manager’ class is used internally for managing the database connection.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.backup_database">
+<span class="sig-name descname"><span class="pre">backup_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backup_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.backup_database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.backup_database" title="Link to this definition"></a></dt>
+<dd><p>Create a backup of the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>backup_path</strong> (<em>str</em>) – The path where the backup should be stored.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the backup was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error creating the database backup.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.execute_query">
+<span class="sig-name descname"><span class="pre">execute_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.execute_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.execute_query" title="Link to this definition"></a></dt>
+<dd><p>Execute a database query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – The SQL query to be executed.</p></li>
+<li><p><strong>*args</strong> – Parameters to be passed to the query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the query was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error executing the query.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.insert_base64">
+<span class="sig-name descname"><span class="pre">insert_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.insert_base64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.insert_base64" title="Link to this definition"></a></dt>
+<dd><p>Insert base64 encoded data into a database table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> (<em>str</em>) – Name of the table to insert data into.</p></li>
+<li><p><strong>data_dict</strong> (<em>dict</em>) – A dictionary where keys are column names, and values are data to be encoded and inserted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error inserting the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.list_tables">
+<span class="sig-name descname"><span class="pre">list_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.list_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.list_tables" title="Link to this definition"></a></dt>
+<dd><p>Get a list of all tables in the SQLite database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of table names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – If there is an error listing tables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.read_base64">
+<span class="sig-name descname"><span class="pre">read_base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_base64</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.read_base64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.read_base64" title="Link to this definition"></a></dt>
+<dd><p>Read and decode base64 encoded data from a database table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> (<em>str</em>) – Name of the table to read data from.</p></li>
+<li><p><strong>only_base64</strong> (<em>bool</em>) – If True, only return rows where at least one column contains base64 encoded data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries where keys are column names, and values are decoded data as bytes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error selecting or decoding the data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.Raw.Raw.restore_database">
+<span class="sig-name descname"><span class="pre">restore_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backup_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/Raw/Raw.html#Raw.restore_database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.Raw.Raw.restore_database" title="Link to this definition"></a></dt>
+<dd><p>Restore the database from a backup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>backup_path</strong> (<em>str</em>) – The path to the backup file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the restore was successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If there is an error restoring the database.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p><strong>Attributes:</strong></p>
+<ul class="simple">
+<li><p><cite>manager (Manager)</cite>: The Manager instance managing the database connection.</p></li>
+</ul>
+<p><strong>Methods:</strong></p>
+<p><strong>__init__</strong></p>
+<p>Initialize the Raw instance with a Manager instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>backup_database</strong></p>
+<p>Create a backup of the database.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># Backup the database</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">backup_database</span><span class="p">(</span><span class="n">backup_path</span><span class="o">=</span><span class="s1">&#39;backups/example_backup.db&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Backup successful&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Backup failed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>restore_database</strong></p>
+<p>Restore the database from a backup.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># Restore the database from a backup</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">restore_database</span><span class="p">(</span><span class="n">backup_path</span><span class="o">=</span><span class="s1">&#39;backups/example_backup.db&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Restore successful&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Restore failed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>execute_query</strong></p>
+<p>Execute a database query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># Execute a query to create a table</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE IF NOT EXISTS user2 (id INTEGER PRIMARY KEY, name TEXT)&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Table created successfully&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to create table&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>list_tables</strong></p>
+<p>Get a list of all tables in the SQLite database.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># List tables in the database</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">list_tables</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tables:&quot;</span><span class="p">,</span> <span class="n">tables</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>insert_base64</strong></p>
+<p>Insert base64 encoded data into a database table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># Data to be inserted</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">253</span><span class="p">,</span>  <span class="c1"># Ensure this matches the expected integer type</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Sepehr&#39;</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">raw</span><span class="o">.</span><span class="n">insert_base64</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="s1">&#39;user2&#39;</span><span class="p">,</span> <span class="n">data_dict</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data inserted successfully&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inserting data: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>read_base64</strong></p>
+<p>Read and decode base64 encoded data from a database table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Raw</span> <span class="kn">import</span> <span class="n">Raw</span>
+<span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.Manager</span> <span class="kn">import</span> <span class="n">Manager</span>
+
+<span class="c1"># Initialize Manager and Raw</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">Raw</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="n">manager</span><span class="p">)</span>
+
+<span class="c1"># Read base64 encoded data</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">read_base64</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="n">only_base64</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decoded data:&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading data: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Exporter.html" class="btn btn-neutral float-left" title="Exporter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../SQLITE3_aio.html" class="btn btn-neutral float-right" title="aio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

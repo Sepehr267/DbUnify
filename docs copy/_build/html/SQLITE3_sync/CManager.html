@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CManager &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Live" href="Live.html" />
+    <link rel="prev" title="ORM" href="ORM.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../SQLite3.html">SQLite3</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../SQLITE3_sync.html">sync</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Manager.html">Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ORM.html">ORM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CManager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">CManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmanager-core">CManager Core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-gcc">Installing GCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmcore">CMCore</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-core">Create Core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-cmanager">Examples CManager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Live.html">Live</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Exporter.html">Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Raw.html">Raw</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SQLITE3_aio.html">aio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Query%20Builder.html">Query Builder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../MySQL.html">MySQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SQL.html">SQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../SQLite3.html">SQLite3</a></li>
+          <li class="breadcrumb-item"><a href="../SQLITE3_sync.html">sync</a></li>
+      <li class="breadcrumb-item active">CManager</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/SQLITE3_sync/CManager.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cmanager">
+<h1>CManager<a class="headerlink" href="#cmanager" title="Link to this heading"></a></h1>
+<p>This module is responsible for managing synchronous database operations. Use C.</p>
+<section id="id1">
+<h2>CManager<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="py class" id="module-DbUnify.SQLite3.sync.CManager.CManager">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.CManager.CManager.</span></span><span class="sig-name descname"><span class="pre">CManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dll_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_ttl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.add_column">
+<span class="sig-name descname"><span class="pre">add_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.add_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.add_column" title="Link to this definition"></a></dt>
+<dd><p>Add a new column to an existing table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> – The name of the table.</p></li>
+<li><p><strong>column_name</strong> – The name of the new column.</p></li>
+<li><p><strong>data_type</strong> – Data type of the new column.</p></li>
+<li><p><strong>constraints</strong> – List of constraints for the new column.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the column was added successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.close_db">
+<span class="sig-name descname"><span class="pre">close_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.close_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.close_db" title="Link to this definition"></a></dt>
+<dd><p>Close the database connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.connect_db">
+<span class="sig-name descname"><span class="pre">connect_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.connect_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.connect_db" title="Link to this definition"></a></dt>
+<dd><p>Connect to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>db_name</strong> – The name of the database file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if connection was successful, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.create_table">
+<span class="sig-name descname"><span class="pre">create_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.create_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.create_table" title="Link to this definition"></a></dt>
+<dd><p>Create a new table in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> – The name of the table.</p></li>
+<li><p><strong>columns</strong> – List of column definitions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the table was created successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.delete_row">
+<span class="sig-name descname"><span class="pre">delete_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.delete_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.delete_row" title="Link to this definition"></a></dt>
+<dd><p>Delete rows from a table based on a condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> – The name of the table.</p></li>
+<li><p><strong>condition</strong> – SQL condition to specify which rows to delete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the rows were deleted successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.drop_table">
+<span class="sig-name descname"><span class="pre">drop_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.drop_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.drop_table" title="Link to this definition"></a></dt>
+<dd><p>Drop an existing table from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_name</strong> – The name of the table to drop.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the table was dropped successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.execute_query">
+<span class="sig-name descname"><span class="pre">execute_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">c_void_p</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">c_void_p</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.execute_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.execute_query" title="Link to this definition"></a></dt>
+<dd><p>Execute a query against the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> – SQL query to execute.</p></li>
+<li><p><strong>callback</strong> – Optional callback function to handle query results.</p></li>
+<li><p><strong>data</strong> – Optional user-defined data to pass to the callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status code from the DLL function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.fetch_all">
+<span class="sig-name descname"><span class="pre">fetch_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.fetch_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.fetch_all" title="Link to this definition"></a></dt>
+<dd><p>Execute a query and fetch all results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> – SQL query to execute.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of dictionaries with column names as keys and column values as values, or None if an error occurs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.get_table_columns">
+<span class="sig-name descname"><span class="pre">get_table_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.get_table_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.get_table_columns" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the column names of a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_name</strong> – The name of the table.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of column names if successful, None otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.insert_row">
+<span class="sig-name descname"><span class="pre">insert_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.insert_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.insert_row" title="Link to this definition"></a></dt>
+<dd><p>Insert a new row into a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> – The name of the table.</p></li>
+<li><p><strong>values</strong> – Dictionary of column names and values to insert.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the row was inserted successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.simple_callback">
+<span class="sig-name descname"><span class="pre">simple_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">c_void_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">c_int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LP_c_char_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azColName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LP_c_char_p</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">c_int</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.simple_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.simple_callback" title="Link to this definition"></a></dt>
+<dd><p>A simple callback function for use with ctypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – User-defined data passed to the callback.</p></li>
+<li><p><strong>argc</strong> – Number of columns.</p></li>
+<li><p><strong>argv</strong> – Array of column values.</p></li>
+<li><p><strong>azColName</strong> – Array of column names.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status code (0 for success).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.CManager.CManager.update_row">
+<span class="sig-name descname"><span class="pre">update_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/CManager.html#CManager.update_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.CManager.CManager.update_row" title="Link to this definition"></a></dt>
+<dd><p>Update rows in a table based on a condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> – The name of the table.</p></li>
+<li><p><strong>values</strong> – Dictionary of column names and new values.</p></li>
+<li><p><strong>condition</strong> – SQL condition to specify which rows to update.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the rows were updated successfully, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="cmanager-core">
+<h2>CManager Core<a class="headerlink" href="#cmanager-core" title="Link to this heading"></a></h2>
+<p><strong>CMCoreBuilder</strong></p>
+<dl class="py class" id="module-DbUnify.SQLite3.sync.CManager.Core.CoreBuilder">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.</span></span><span class="sig-name descname"><span class="pre">CMCoreBuilder</span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/Core/CoreBuilder.html#CMCoreBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>CMCoreBuilder (CManager Core Builder) is responsible for managing and building the core library for different operating systems.</p>
+<p>This class checks the compatibility of the existing core library file (either on Linux or Windows),
+and if the library is missing or incompatible, it compiles and builds the library using the appropriate
+compiler (GCC) based on the detected operating system. For Linux, it builds a shared object (.so),
+and for Windows, it builds a dynamic-link library (.dll).</p>
+<p>The class uses ctypes to check if the library is compatible and subprocess to run the compilation commands.
+It also handles OS-specific file naming conventions, includes system architecture in output files, and links
+to required libraries like SQLite and Python.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.build_core">
+<span class="sig-name descname"><span class="pre">build_core</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/Core/CoreBuilder.html#CMCoreBuilder.build_core"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.build_core" title="Link to this definition"></a></dt>
+<dd><p>Initiates the build process for the core library based on the current operating system.
+If the system is Linux, it calls the compile_linux method.
+If the system is Windows, it calls the compile_windows method.
+Otherwise, it prints an unsupported OS message.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_linux">
+<span class="sig-name descname"><span class="pre">compile_linux</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/Core/CoreBuilder.html#CMCoreBuilder.compile_linux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_linux" title="Link to this definition"></a></dt>
+<dd><p>Compiles the core library for Linux systems using the GCC compiler. The source files manager.c and cache.c are
+compiled and linked to produce a shared object (.so) file. The final output is saved as a Linux-specific shared
+library file.</p>
+<p>If the build succeeds, a success message is printed, otherwise an error message is displayed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_windows">
+<span class="sig-name descname"><span class="pre">compile_windows</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/Core/CoreBuilder.html#CMCoreBuilder.compile_windows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_windows" title="Link to this definition"></a></dt>
+<dd><p>Compiles the core library for Windows systems using the GCC compiler. The source files manager.c and cache.c
+are compiled and linked to produce a shared dynamic-link library (.dll). It also links against the Python and
+SQLite libraries. The final output file is named according to the system architecture (x64 or x86).</p>
+<p>If the build succeeds, a success message is printed, otherwise an error message is displayed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FileNotFoundError</strong> – If the required Python library file cannot be found in the Python installation directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>The <cite>CMCoreBuilder</cite> class in the CManager Core module is responsible for managing and building the core library for the CManager system. This involves compiling and linking the core library for different operating systems: Linux and Windows. To successfully build the core library, GCC (GNU Compiler Collection) must be installed on your system.</p>
+</section>
+<section id="installing-gcc">
+<h2>Installing GCC<a class="headerlink" href="#installing-gcc" title="Link to this heading"></a></h2>
+<p><strong>Installing GCC on Linux</strong></p>
+<ol class="arabic">
+<li><p><strong>Update Package Lists</strong>
+Open your terminal and update the package lists:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install GCC and G++</strong>
+Install GCC and G++ using the package manager:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gcc<span class="w"> </span>g++
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify Installation</strong>
+Check that GCC is installed correctly by verifying its version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>You should see the version of GCC installed.</p>
+</li>
+</ol>
+<p><strong>Installing GCC on Windows</strong></p>
+<ol class="arabic">
+<li><p><strong>Download MinGW</strong>
+Go to the MinGW website and download the installer:
+[MinGW Download](<a class="reference external" href="https://sourceforge.net/projects/mingw-w64/files/latest/download">https://sourceforge.net/projects/mingw-w64/files/latest/download</a>)</p></li>
+<li><p><strong>Run the Installer</strong>
+Run the downloaded installer and follow the prompts to install MinGW. Make sure to select the GCC component during installation.</p></li>
+<li><p><strong>Add MinGW to PATH</strong>
+After installation, you need to add MinGW to your system PATH:</p>
+<ul class="simple">
+<li><p><strong>Open System Properties</strong>
+Right-click on “This PC” or “Computer” on your desktop or in File Explorer, and select “Properties.” Click on “Advanced system settings.”</p></li>
+<li><p><strong>Edit Environment Variables</strong>
+In the System Properties window, click on the “Environment Variables” button.</p></li>
+<li><p><strong>Update PATH Variable</strong>
+In the Environment Variables window, find and select the <cite>PATH</cite> variable in the “System variables” section, then click “Edit.”</p></li>
+<li><p><strong>Add MinGW Bin Directory</strong>
+Add the path to the MinGW <cite>bin</cite> directory to the <cite>PATH</cite> variable. The default path is usually <cite>C:MinGWbin</cite>. Add this path and click “OK” to save.</p></li>
+</ul>
+</li>
+<li><p><strong>Verify Installation</strong>
+Open Command Prompt and check that GCC is installed correctly:</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>gcc --version
+</pre></div>
+</div>
+<p>You should see the version of GCC installed.</p>
+</li>
+</ol>
+<p>By following these instructions, you will ensure that GCC is installed and properly configured on your system, enabling you to build the CManager core library successfully.</p>
+</section>
+<section id="cmcore">
+<h2>CMCore<a class="headerlink" href="#cmcore" title="Link to this heading"></a></h2>
+<p>Get the path of the CManager Core for your operating system.</p>
+<dl class="py function" id="module-DbUnify.SQLite3.sync.CManager.Core.CMCore">
+<dt class="sig sig-object py" id="DbUnify.SQLite3.sync.CManager.Core.CMCore.get_core">
+<span class="sig-prename descclassname"><span class="pre">DbUnify.SQLite3.sync.CManager.Core.CMCore.</span></span><span class="sig-name descname"><span class="pre">get_core</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/DbUnify/SQLite3/sync/CManager/Core/CMCore.html#get_core"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQLite3.sync.CManager.Core.CMCore.get_core" title="Link to this definition"></a></dt>
+<dd><p>Returns the full path to the core library file based on the operating system.</p>
+<p>On Linux, it searches for a ‘.so’ file in the ‘core’ folder.
+On Windows, it searches for a ‘.dll’ file in the ‘core’ folder.</p>
+<p>Raises an Exception if the operating system is unsupported or no matching file is found.</p>
+</dd></dl>
+
+</section>
+<section id="create-core">
+<h2>Create Core<a class="headerlink" href="#create-core" title="Link to this heading"></a></h2>
+<p><strong>Build Core</strong></p>
+<p>Use Class <cite>CMCoreBuilder</cite> create your own Core CManager for your System</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync</span> <span class="kn">import</span> <span class="n">CMCoreBuilder</span>
+
+<span class="n">builder</span> <span class="o">=</span> <span class="n">CMCoreBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">build_core</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="examples-cmanager">
+<h2>Examples CManager<a class="headerlink" href="#examples-cmanager" title="Link to this heading"></a></h2>
+<p><strong>Connect to Database</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">connect_db</span><span class="p">(</span><span class="s1">&#39;database.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Create a table</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span>
+    <span class="s2">&quot;users&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;INTEGER&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;NOT NULL&#39;</span><span class="p">,</span> <span class="s1">&#39;PRIMARY KEY&#39;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;NOT NULL&#39;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;TEXT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;UNIQUE&#39;</span><span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert a row</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">insert_row</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s2">&quot;john.doe@example.com&quot;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p><strong>Fetch all (Select)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">fetch_all</span><span class="p">(</span><span class="s1">&#39;select * from users&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Update a row</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">update_row</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;john.doe@newdomain.com&#39;</span><span class="p">},</span> <span class="s2">&quot;name = &#39;John Doe&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Delete a row</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">delete_row</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;name = &#39;John Doe&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Drop Table</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DbUnify.SQLite3.sync.CManager</span> <span class="kn">import</span> <span class="n">CManager</span><span class="p">,</span> <span class="n">get_core</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">CManager</span><span class="p">(</span><span class="n">get_core</span><span class="p">())</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ORM.html" class="btn btn-neutral float-left" title="ORM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Live.html" class="btn btn-neutral float-right" title="Live" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
