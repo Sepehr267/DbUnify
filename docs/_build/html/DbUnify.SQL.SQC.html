@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQL.SQC package &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=b21de401"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SQLite3.html">SQLite3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MySQL.html">MySQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SQL.html">SQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">DbUnify.SQL.SQC package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/DbUnify.SQL.SQC.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dbunify-sql-sqc-package">
+<h1>DbUnify.SQL.SQC package<a class="headerlink" href="#dbunify-sql-sqc-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-DbUnify.SQL.SQC.DatasetCreator">
+<span id="dbunify-sql-sqc-datasetcreator-module"></span><h2>DbUnify.SQL.SQC.DatasetCreator module<a class="headerlink" href="#module-DbUnify.SQL.SQC.DatasetCreator" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQL.SQC.DatasetCreator.</span></span><span class="sig-name descname"><span class="pre">DatasetGenerator</span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.add_custom_patterns">
+<span class="sig-name descname"><span class="pre">add_custom_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suspicious_patterns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_suspicious_patterns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.add_custom_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.add_custom_patterns" title="Link to this definition"></a></dt>
+<dd><p>Adds custom SQL query patterns to the existing list of patterns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>suspicious_patterns</strong> (<em>list</em>) – List of custom suspicious SQL patterns to add.</p></li>
+<li><p><strong>non_suspicious_patterns</strong> (<em>list</em>) – List of custom non-suspicious SQL patterns to add.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.add_custom_tables_columns_values">
+<span class="sig-name descname"><span class="pre">add_custom_tables_columns_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.add_custom_tables_columns_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.add_custom_tables_columns_values" title="Link to this definition"></a></dt>
+<dd><p>Adds custom tables, columns, and values to the existing lists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tables</strong> (<em>list</em>) – List of custom table names to add.</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – List of custom column names to add.</p></li>
+<li><p><strong>values</strong> (<em>list</em>) – List of custom values to add.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_dataset">
+<span class="sig-name descname"><span class="pre">generate_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_suspicious</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_non_suspicious</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.generate_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_dataset" title="Link to this definition"></a></dt>
+<dd><p>Generates a dataset consisting of both suspicious and non-suspicious SQL queries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_suspicious</strong> (<em>int</em>) – Number of suspicious queries to generate.</p></li>
+<li><p><strong>num_non_suspicious</strong> (<em>int</em>) – Number of non-suspicious queries to generate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries, each containing a SQL query and its label (1 for suspicious, 0 for non-suspicious).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_non_suspicious_query">
+<span class="sig-name descname"><span class="pre">generate_non_suspicious_query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.generate_non_suspicious_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_non_suspicious_query" title="Link to this definition"></a></dt>
+<dd><p>Generates a single non-suspicious SQL query using predefined patterns, tables, columns, and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A non-suspicious SQL query string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_suspicious_query">
+<span class="sig-name descname"><span class="pre">generate_suspicious_query</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.generate_suspicious_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.generate_suspicious_query" title="Link to this definition"></a></dt>
+<dd><p>Generates a single suspicious SQL query using predefined patterns, tables, columns, and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A suspicious SQL query string.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.save_to_json">
+<span class="sig-name descname"><span class="pre">save_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/DatasetCreator.html#DatasetGenerator.save_to_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.DatasetCreator.DatasetGenerator.save_to_json" title="Link to this definition"></a></dt>
+<dd><p>Saves the generated dataset to a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>list</em>) – The dataset to save.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The name of the file to save the dataset to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQL.SQC.SQC">
+<span id="dbunify-sql-sqc-sqc-module"></span><h2>DbUnify.SQL.SQC.SQC module<a class="headerlink" href="#module-DbUnify.SQL.SQC.SQC" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQC.SQC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQL.SQC.SQC.</span></span><span class="sig-name descname"><span class="pre">SQC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorizer_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQC.html#SQC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQC.SQC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQC.SQC.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQC.html#SQC.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQC.SQC.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts whether a given SQL query is suspicious or not by using the loaded model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> – The SQL query string to be evaluated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string ‘Suspicious’ if the query is flagged as suspicious, otherwise ‘Not Suspicious’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQC.SQC.predict_multiple">
+<span class="sig-name descname"><span class="pre">predict_multiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQC.html#SQC.predict_multiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQC.SQC.predict_multiple" title="Link to this definition"></a></dt>
+<dd><p>Predicts the suspiciousness for multiple SQL queries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>queries</strong> – A list of SQL query strings to be evaluated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tuples, each containing the query and its prediction (‘Suspicious’ or ‘Not Suspicious’).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQL.SQC.SQCTrainer">
+<span id="dbunify-sql-sqc-sqctrainer-module"></span><h2>DbUnify.SQL.SQC.SQCTrainer module<a class="headerlink" href="#module-DbUnify.SQL.SQC.SQCTrainer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQL.SQC.SQCTrainer.</span></span><span class="sig-name descname"><span class="pre">SQCTrainer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQCTrainer.html#SQCTrainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is designed to detect SQL injection attempts in SQL queries using machine learning techniques.
+It reads data from a JSON file, processes the data, trains a model, evaluates the model’s performance,
+and saves the trained model and vectorizer for future use.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.evaluate_model">
+<span class="sig-name descname"><span class="pre">evaluate_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQCTrainer.html#SQCTrainer.evaluate_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.evaluate_model" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the trained model on the test data, printing the accuracy and classification report.</p>
+<dl class="simple">
+<dt>Outputs:</dt><dd><p>Accuracy (float): The accuracy of the model on the test data.
+Classification Report (str): Detailed performance metrics including precision, recall, and F1-score.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.preprocess_data">
+<span class="sig-name descname"><span class="pre">preprocess_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQCTrainer.html#SQCTrainer.preprocess_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.preprocess_data" title="Link to this definition"></a></dt>
+<dd><p>Preprocesses the data by transforming SQL queries into TF-IDF features and splitting the data into training and testing sets.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_vectorized">
+<span class="sig-prename descclassname"><span class="pre">self.</span></span><span class="sig-name descname"><span class="pre">X_vectorized</span></span><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_vectorized" title="Link to this definition"></a></dt>
+<dd><p>TF-IDF features of the SQL queries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sparse matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_train">
+<span class="sig-prename descclassname"><span class="pre">self.</span></span><span class="sig-name descname"><span class="pre">X_train</span></span><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_train" title="Link to this definition"></a></dt>
+<dd><p>Training features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sparse matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_test">
+<span class="sig-prename descclassname"><span class="pre">self.</span></span><span class="sig-name descname"><span class="pre">X_test</span></span><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.X_test" title="Link to this definition"></a></dt>
+<dd><p>Testing features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sparse matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.y_train">
+<span class="sig-prename descclassname"><span class="pre">self.</span></span><span class="sig-name descname"><span class="pre">y_train</span></span><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.y_train" title="Link to this definition"></a></dt>
+<dd><p>Training labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.y_test">
+<span class="sig-prename descclassname"><span class="pre">self.</span></span><span class="sig-name descname"><span class="pre">y_test</span></span><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.self.y_test" title="Link to this definition"></a></dt>
+<dd><p>Testing labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.save_model">
+<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorizer_filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQCTrainer.html#SQCTrainer.save_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.save_model" title="Link to this definition"></a></dt>
+<dd><p>Saves the trained model and the vectorizer to files for later use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_filename</strong> (<em>str</em>) – Path to the file where the trained model will be saved.</p></li>
+<li><p><strong>vectorizer_filename</strong> (<em>str</em>) – Path to the file where the vectorizer will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Outputs:</dt><dd><p>Prints a confirmation message indicating where the model and vectorizer have been saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.train_model">
+<span class="sig-name descname"><span class="pre">train_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SQCTrainer.html#SQCTrainer.train_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SQCTrainer.SQCTrainer.train_model" title="Link to this definition"></a></dt>
+<dd><p>Trains the RandomForestClassifier model using the preprocessed training data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQL.SQC.SelfLearningSQC">
+<span id="dbunify-sql-sqc-selflearningsqc-module"></span><h2>DbUnify.SQL.SQC.SelfLearningSQC module<a class="headerlink" href="#module-DbUnify.SQL.SQC.SelfLearningSQC" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DbUnify.SQL.SQC.SelfLearningSQC.</span></span><span class="sig-name descname"><span class="pre">SelfLearningSQC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorizer_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_data_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SelfLearningSQC.html#SelfLearningSQC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DbUnify.SQL.SQC.SQC.SQC" title="DbUnify.SQL.SQC.SQC.SQC"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC.evaluate_model">
+<span class="sig-name descname"><span class="pre">evaluate_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SelfLearningSQC.html#SelfLearningSQC.evaluate_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC.evaluate_model" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the retrained model using a separate test dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_data</strong> – List of dictionaries containing SQL queries and their labels for testing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC.retrain_model">
+<span class="sig-name descname"><span class="pre">retrain_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorizer_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DbUnify/SQL/SQC/SelfLearningSQC.html#SelfLearningSQC.retrain_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DbUnify.SQL.SQC.SelfLearningSQC.SelfLearningSQC.retrain_model" title="Link to this definition"></a></dt>
+<dd><p>Retrains the model with new data and saves the updated model and vectorizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_data</strong> – List of dictionaries containing new SQL queries and their labels.</p></li>
+<li><p><strong>model_filename</strong> – Path to the file where the retrained model will be saved.</p></li>
+<li><p><strong>vectorizer_filename</strong> – Path to the file where the retrained vectorizer will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DbUnify.SQL.SQC">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DbUnify.SQL.SQC" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

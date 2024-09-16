@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQLite3.sync.CManager.Core.CoreBuilder &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../SQLite3.html">SQLite3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../MySQL.html">MySQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../SQL.html">SQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">DbUnify.SQLite3.sync.CManager.Core.CoreBuilder</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for DbUnify.SQLite3.sync.CManager.Core.CoreBuilder</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.CMCore</span> <span class="kn">import</span> <span class="n">get_core</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<div class="viewcode-block" id="CMCoreBuilder">
+<a class="viewcode-back" href="../../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder">[docs]</a>
+<span class="k">class</span> <span class="nc">CMCoreBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CMCoreBuilder (CManager Core Builder) is responsible for managing and building the core library for different operating systems.</span>
+<span class="sd">    </span>
+<span class="sd">    This class checks the compatibility of the existing core library file (either on Linux or Windows),</span>
+<span class="sd">    and if the library is missing or incompatible, it compiles and builds the library using the appropriate</span>
+<span class="sd">    compiler (GCC) based on the detected operating system. For Linux, it builds a shared object (.so), </span>
+<span class="sd">    and for Windows, it builds a dynamic-link library (.dll).</span>
+<span class="sd">    </span>
+<span class="sd">    The class uses ctypes to check if the library is compatible and subprocess to run the compilation commands.</span>
+<span class="sd">    It also handles OS-specific file naming conventions, includes system architecture in output files, and links</span>
+<span class="sd">    to required libraries like SQLite and Python.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the CMCoreBuilder class by setting the core library path and base directory.</span>
+<span class="sd">        It then proceeds to check the compatibility of the core library file and builds it if necessary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core_path</span> <span class="o">=</span> <span class="n">get_core</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="c1"># self.__check_and_build()</span>
+
+    <span class="k">def</span> <span class="nf">__check_and_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the core library file is compatible by verifying its existence and loading it via ctypes.</span>
+<span class="sd">        If the core file is missing or incompatible, it initiates the build process.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_core_file_compatible</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[32m[CMCoreBuilder] Core library file is compatible: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">core_path</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m[CMCoreBuilder] Core library file is not compatible or missing.</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_core</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">__is_core_file_compatible</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determines whether the core library file is compatible or not.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the file exists and can be loaded using ctypes, otherwise False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core_path</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="CMCoreBuilder.build_core">
+<a class="viewcode-back" href="../../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.build_core">[docs]</a>
+    <span class="k">def</span> <span class="nf">build_core</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initiates the build process for the core library based on the current operating system.</span>
+<span class="sd">        If the system is Linux, it calls the compile_linux method.</span>
+<span class="sd">        If the system is Windows, it calls the compile_windows method.</span>
+<span class="sd">        Otherwise, it prints an unsupported OS message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">system</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">system</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_linux</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">system</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_windows</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[33m[CMCoreBuilder] Unsupported operating system</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CMCoreBuilder.compile_linux">
+<a class="viewcode-back" href="../../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_linux">[docs]</a>
+    <span class="k">def</span> <span class="nf">compile_linux</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compiles the core library for Linux systems using the GCC compiler. The source files manager.c and cache.c are</span>
+<span class="sd">        compiled and linked to produce a shared object (.so) file. The final output is saved as a Linux-specific shared</span>
+<span class="sd">        library file.</span>
+<span class="sd">        </span>
+<span class="sd">        If the build succeeds, a success message is printed, otherwise an error message is displayed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">manager_c</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">,</span> <span class="s1">&#39;manager.c&#39;</span><span class="p">)</span>
+        <span class="n">cache_c</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">,</span> <span class="s1">&#39;cache.c&#39;</span><span class="p">)</span>
+        <span class="n">output_so</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;CManager-Linux-Debian-v2.2.0.so&#39;</span><span class="p">)</span>
+
+        <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;gcc&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;-shared&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">output_so</span><span class="p">,</span>
+            <span class="s1">&#39;-fPIC&#39;</span><span class="p">,</span> <span class="s1">&#39;-O3&#39;</span><span class="p">,</span>
+            <span class="n">manager_c</span><span class="p">,</span> <span class="n">cache_c</span><span class="p">,</span>
+            <span class="s1">&#39;-lsqlite3&#39;</span>
+        <span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[32m[CMCoreBuilder] Build complete for Linux: </span><span class="si">{</span><span class="n">output_so</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m[CMCoreBuilder] Error running build command: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">__get_windows_architecture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the architecture of the current Windows operating system (either &#39;x64&#39; for 64-bit or &#39;x86&#39; for 32-bit).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            str: &#39;x64&#39; if the system is 64-bit, &#39;x86&#39; if it is 32-bit, or &#39;Unknown&#39; if the architecture cannot be determined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">arch</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">architecture</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">arch</span> <span class="o">==</span> <span class="s1">&#39;64bit&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;x64&#39;</span>
+        <span class="k">elif</span> <span class="n">arch</span> <span class="o">==</span> <span class="s1">&#39;32bit&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;x86&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Unknown&#39;</span>
+
+<div class="viewcode-block" id="CMCoreBuilder.compile_windows">
+<a class="viewcode-back" href="../../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.Core.CoreBuilder.CMCoreBuilder.compile_windows">[docs]</a>
+    <span class="k">def</span> <span class="nf">compile_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compiles the core library for Windows systems using the GCC compiler. The source files manager.c and cache.c</span>
+<span class="sd">        are compiled and linked to produce a shared dynamic-link library (.dll). It also links against the Python and</span>
+<span class="sd">        SQLite libraries. The final output file is named according to the system architecture (x64 or x86).</span>
+<span class="sd">        </span>
+<span class="sd">        If the build succeeds, a success message is printed, otherwise an error message is displayed.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            FileNotFoundError: If the required Python library file cannot be found in the Python installation directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">manager_c</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">,</span> <span class="s1">&#39;manager.c&#39;</span><span class="p">)</span>
+        <span class="n">cache_c</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">,</span> <span class="s1">&#39;cache.c&#39;</span><span class="p">)</span>
+        <span class="n">sqlite3_h_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">)</span>
+        <span class="n">sqlite3_lib</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;Base&#39;</span><span class="p">,</span> <span class="s1">&#39;sqlite3.lib&#39;</span><span class="p">)</span>
+
+        <span class="n">python_install_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+        <span class="n">python_libs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">python_install_dir</span><span class="p">,</span> <span class="s1">&#39;libs&#39;</span><span class="p">)</span>
+
+        <span class="n">lib_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">python_libs_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.lib&#39;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">lib_files</span><span class="p">:</span>
+            <span class="n">python_lib_file</span> <span class="o">=</span> <span class="n">lib_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m[CMCoreBuilder] Python library file not found in the expected directory.</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Python library file not found in the expected directory.&quot;</span><span class="p">)</span>
+
+        <span class="n">architecture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_windows_architecture</span><span class="p">()</span>
+
+        <span class="n">output_dll</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;CManager-Windows-</span><span class="si">{</span><span class="n">architecture</span><span class="si">}</span><span class="s1">-v2.2.0.dll&#39;</span><span class="p">)</span>
+
+        <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;gcc&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;-shared&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">output_dll</span><span class="p">,</span>
+            <span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="n">sqlite3_h_dir</span><span class="p">,</span>
+            <span class="n">manager_c</span><span class="p">,</span> <span class="n">cache_c</span><span class="p">,</span>
+            <span class="n">sqlite3_lib</span><span class="p">,</span>
+            <span class="s1">&#39;-L&#39;</span><span class="p">,</span> <span class="n">sqlite3_h_dir</span><span class="p">,</span> <span class="s1">&#39;-lsqlite3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;-L&#39;</span><span class="p">,</span> <span class="n">python_libs_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;-l</span><span class="si">{</span><span class="n">python_lib_file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[32m[CMCoreBuilder] Build complete for Windows: </span><span class="si">{</span><span class="n">output_dll</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[31m[CMCoreBuilder] Error running build command: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

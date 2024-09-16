@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQLite3.sync.CManager.CManager &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DbUnify:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../SQLite3.html">SQLite3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../MySQL.html">MySQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../SQL.html">SQL</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">DbUnify.SQLite3.sync.CManager.CManager</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for DbUnify.SQLite3.sync.CManager.CManager</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="n">CFUNCTYPE</span><span class="p">,</span> <span class="n">POINTER</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">.CMCache</span> <span class="kn">import</span> <span class="n">CMCache</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+
+<span class="n">CallbackType</span> <span class="o">=</span> <span class="n">CFUNCTYPE</span><span class="p">(</span><span class="n">c_int</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">),</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">))</span>
+
+<div class="viewcode-block" id="CManager">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager">[docs]</a>
+<span class="k">class</span> <span class="nc">CManager</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dll_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cache_ttl</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span> <span class="n">cache_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the CManager with a DLL path and optional cache settings.</span>
+
+<span class="sd">        :param dll_path: Path to the shared library (DLL).</span>
+<span class="sd">        :param cache_ttl: Time-to-live for cache entries in seconds.</span>
+<span class="sd">        :param cache_size: Maximum number of items to store in cache.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[93mNote: CManager does not support DataType and Rules classes</span><span class="se">\n\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dll</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">dll_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">c_void_p</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">CMCache</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="n">cache_ttl</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">cache_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_dll</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_setup_dll</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up the DLL function prototypes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">func_names</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;connect_db&#39;</span><span class="p">,</span> <span class="s1">&#39;close_db&#39;</span><span class="p">,</span> <span class="s1">&#39;execute_query&#39;</span><span class="p">,</span> <span class="s1">&#39;create_table&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;drop_table&#39;</span><span class="p">,</span> <span class="s1">&#39;add_column&#39;</span><span class="p">,</span> <span class="s1">&#39;insert_row&#39;</span><span class="p">,</span> <span class="s1">&#39;delete_row&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;update_row&#39;</span><span class="p">,</span> <span class="s1">&#39;get_table_columns&#39;</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dll_functions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CFUNCTYPE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">func_name</span> <span class="ow">in</span> <span class="n">func_names</span><span class="p">:</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="p">,</span> <span class="n">func_name</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_argtypes</span><span class="p">(</span><span class="n">func_name</span><span class="p">)</span>
+            <span class="n">func</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">c_int</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dll_functions</span><span class="p">[</span><span class="n">func_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
+
+    <span class="k">def</span> <span class="nf">_get_argtypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">type</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the argument types for a given function name.</span>
+
+<span class="sd">        :param func_name: The name of the function.</span>
+<span class="sd">        :return: List of argument types.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">argtypes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;connect_db&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">POINTER</span><span class="p">(</span><span class="n">c_void_p</span><span class="p">),</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;close_db&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">],</span>
+            <span class="s1">&#39;execute_query&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">CallbackType</span><span class="p">,</span> <span class="n">c_void_p</span><span class="p">],</span>
+            <span class="s1">&#39;create_table&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;drop_table&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;add_column&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;insert_row&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;delete_row&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;update_row&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">],</span>
+            <span class="s1">&#39;get_table_columns&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">argtypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">func_name</span><span class="p">,</span> <span class="p">[])</span>
+
+<div class="viewcode-block" id="CManager.simple_callback">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.simple_callback">[docs]</a>
+    <span class="k">def</span> <span class="nf">simple_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="n">argc</span><span class="p">:</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">argv</span><span class="p">:</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">),</span> <span class="n">azColName</span><span class="p">:</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">c_int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A simple callback function for use with ctypes.</span>
+
+<span class="sd">        :param data: User-defined data passed to the callback.</span>
+<span class="sd">        :param argc: Number of columns.</span>
+<span class="sd">        :param argv: Array of column values.</span>
+<span class="sd">        :param azColName: Array of column names.</span>
+<span class="sd">        :return: Status code (0 for success).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.connect_db">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.connect_db">[docs]</a>
+    <span class="k">def</span> <span class="nf">connect_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to the database.</span>
+
+<span class="sd">        :param db_name: The name of the database file.</span>
+<span class="sd">        :return: True if connection was successful, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Already connected to a database.&quot;</span><span class="p">)</span>
+        <span class="n">db_name_bytes</span> <span class="o">=</span> <span class="n">db_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">c_void_p</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">connect_db</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">),</span> <span class="n">db_name_bytes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.close_db">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.close_db">[docs]</a>
+    <span class="k">def</span> <span class="nf">close_db</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Close the database connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No database connection to close.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">close_db</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="CManager.execute_query">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.execute_query">[docs]</a>
+    <span class="k">def</span> <span class="nf">execute_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">c_void_p</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]],</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">c_void_p</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a query against the database.</span>
+
+<span class="sd">        :param query: SQL query to execute.</span>
+<span class="sd">        :param callback: Optional callback function to handle query results.</span>
+<span class="sd">        :param data: Optional user-defined data to pass to the callback.</span>
+<span class="sd">        :return: Status code from the DLL function.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query_bytes</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">c_callback</span> <span class="o">=</span> <span class="n">CallbackType</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span> <span class="k">if</span> <span class="n">callback</span> <span class="k">else</span> <span class="n">CallbackType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simple_callback</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">query_bytes</span><span class="p">,</span> <span class="n">c_callback</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CManager.create_table">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.create_table">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new table in the database.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :param columns: List of column definitions.</span>
+<span class="sd">        :return: True if the table was created successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">columns_def</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">constraints</span> <span class="ow">in</span> <span class="n">columns</span>
+        <span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">columns_def</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.drop_table">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.drop_table">[docs]</a>
+    <span class="k">def</span> <span class="nf">drop_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Drop an existing table from the database.</span>
+
+<span class="sd">        :param table_name: The name of the table to drop.</span>
+<span class="sd">        :return: True if the table was dropped successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.add_column">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.add_column">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a new column to an existing table.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :param column_name: The name of the new column.</span>
+<span class="sd">        :param data_type: Data type of the new column.</span>
+<span class="sd">        :param constraints: List of constraints for the new column.</span>
+<span class="sd">        :return: True if the column was added successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span>
+            <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="n">column_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="n">data_type</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">constraints</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.insert_row">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.insert_row">[docs]</a>
+    <span class="k">def</span> <span class="nf">insert_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Insert a new row into a table.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :param values: Dictionary of column names and values to insert.</span>
+<span class="sd">        :return: True if the row was inserted successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">values_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">sql_statement</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;INSERT INTO </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">columns</span><span class="si">}</span><span class="s2">) VALUES (</span><span class="si">{</span><span class="n">values_str</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SQL Statement for insert_row: </span><span class="si">{</span><span class="n">sql_statement</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">sql_statement</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">CallbackType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simple_callback</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.delete_row">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.delete_row">[docs]</a>
+    <span class="k">def</span> <span class="nf">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete rows from a table based on a condition.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :param condition: SQL condition to specify which rows to delete.</span>
+<span class="sd">        :return: True if the rows were deleted successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">condition</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.update_row">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.update_row">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update rows in a table based on a condition.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :param values: Dictionary of column names and new values.</span>
+<span class="sd">        :param condition: SQL condition to specify which rows to update.</span>
+<span class="sd">        :return: True if the rows were updated successfully, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">set_clause</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> = &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">update_row</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span>
+            <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="n">set_clause</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+            <span class="n">condition</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="CManager.get_table_columns">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.get_table_columns">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_table_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the column names of a table.</span>
+
+<span class="sd">        :param table_name: The name of the table.</span>
+<span class="sd">        :return: List of column names if successful, None otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dll</span><span class="o">.</span><span class="n">get_table_columns</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">table_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="CManager.fetch_all">
+<a class="viewcode-back" href="../../../../../SQLITE3_sync/CManager.html#DbUnify.SQLite3.sync.CManager.CManager.CManager.fetch_all">[docs]</a>
+    <span class="k">def</span> <span class="nf">fetch_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a query and fetch all results.</span>
+
+<span class="sd">        :param query: SQL query to execute.</span>
+<span class="sd">        :return: List of dictionaries with column names as keys and column values as values, or None if an error occurs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span> <span class="nf">fetch_callback</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">c_void_p</span><span class="p">,</span> <span class="n">argc</span><span class="p">:</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">argv</span><span class="p">:</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">),</span> <span class="n">azColName</span><span class="p">:</span> <span class="n">POINTER</span><span class="p">(</span><span class="n">c_char_p</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">c_int</span><span class="p">:</span>
+            <span class="k">nonlocal</span> <span class="n">results</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">argc</span><span class="p">):</span>
+                <span class="n">col_name</span> <span class="o">=</span> <span class="n">azColName</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">azColName</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+                <span class="n">col_value</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+                <span class="n">row</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">col_value</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="n">result_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">fetch_callback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result_code</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[91mError executing query. Status code: </span><span class="si">{</span><span class="n">result_code</span><span class="si">}</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">results</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

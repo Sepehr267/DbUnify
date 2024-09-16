@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DbUnify.SQLite3.sync.ORM.Types &mdash; DbUnify 2.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=b21de401"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            DbUnify
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">DbUnify</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">DbUnify</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">DbUnify.SQLite3.sync.ORM.Types</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for DbUnify.SQLite3.sync.ORM.Types</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">...data</span> <span class="kn">import</span> <span class="n">DataType</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<div class="viewcode-block" id="Field">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.Field">[docs]</a>
+<span class="k">class</span> <span class="nc">Field</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="n">data_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="n">constraints</span> <span class="ow">or</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="IntegerField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.IntegerField">[docs]</a>
+<span class="k">class</span> <span class="nc">IntegerField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TinyIntField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.TinyIntField">[docs]</a>
+<span class="k">class</span> <span class="nc">TinyIntField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">TINYINT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SmallIntField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.SmallIntField">[docs]</a>
+<span class="k">class</span> <span class="nc">SmallIntField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">SMALLINT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MediumIntField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.MediumIntField">[docs]</a>
+<span class="k">class</span> <span class="nc">MediumIntField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">MEDIUMINT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BigIntField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.BigIntField">[docs]</a>
+<span class="k">class</span> <span class="nc">BigIntField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">BIGINT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UnsignedBigIntField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.UnsignedBigIntField">[docs]</a>
+<span class="k">class</span> <span class="nc">UnsignedBigIntField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">UNSIGNED_BIG_INT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Int2Field">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.Int2Field">[docs]</a>
+<span class="k">class</span> <span class="nc">Int2Field</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT2</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Int8Field">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.Int8Field">[docs]</a>
+<span class="k">class</span> <span class="nc">Int8Field</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT8</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TextField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.TextField">[docs]</a>
+<span class="k">class</span> <span class="nc">TextField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BlobField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.BlobField">[docs]</a>
+<span class="k">class</span> <span class="nc">BlobField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">BLOB</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RealField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.RealField">[docs]</a>
+<span class="k">class</span> <span class="nc">RealField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">REAL</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DoubleField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.DoubleField">[docs]</a>
+<span class="k">class</span> <span class="nc">DoubleField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DOUBLE</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DoublePrecisionField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.DoublePrecisionField">[docs]</a>
+<span class="k">class</span> <span class="nc">DoublePrecisionField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DOUBLE_PRECISION</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FloatField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.FloatField">[docs]</a>
+<span class="k">class</span> <span class="nc">FloatField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NumericField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.NumericField">[docs]</a>
+<span class="k">class</span> <span class="nc">NumericField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DECIMAL</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">scale</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BooleanField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.BooleanField">[docs]</a>
+<span class="k">class</span> <span class="nc">BooleanField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">BOOLEAN</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DateField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.DateField">[docs]</a>
+<span class="k">class</span> <span class="nc">DateField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATE</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DateTimeField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.DateTimeField">[docs]</a>
+<span class="k">class</span> <span class="nc">DateTimeField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATETIME</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.CharField">[docs]</a>
+<span class="k">class</span> <span class="nc">CharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">CHARACTER</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VarcharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.VarcharField">[docs]</a>
+<span class="k">class</span> <span class="nc">VarcharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VaryingCharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.VaryingCharField">[docs]</a>
+<span class="k">class</span> <span class="nc">VaryingCharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">VARYING_CHARACTER</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NcharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.NcharField">[docs]</a>
+<span class="k">class</span> <span class="nc">NcharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">NCHAR</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NativeCharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.NativeCharField">[docs]</a>
+<span class="k">class</span> <span class="nc">NativeCharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">NATIVE_CHARACTER</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NvarcharField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.NvarcharField">[docs]</a>
+<span class="k">class</span> <span class="nc">NvarcharField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">NVARCHAR</span><span class="p">(</span><span class="n">length</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DecimalField">
+<a class="viewcode-back" href="../../../../../DbUnify.SQLite3.sync.ORM.html#DbUnify.SQLite3.sync.ORM.Types.DecimalField">[docs]</a>
+<span class="k">class</span> <span class="nc">DecimalField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">DataType</span><span class="o">.</span><span class="n">DECIMAL</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span> <span class="n">scale</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sepehr0Day.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
